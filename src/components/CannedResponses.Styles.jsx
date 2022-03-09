@@ -15,13 +15,6 @@ export const CannedResponsesStyles = styled('div')`
     margin-top: 25px;
   }
 
-  .frame {
-    border: 1px solid #d71b60;
-    padding: 20px;
-    margin-bottom: 6px;]
-    margin-right: 6px;
-  }
-
   .input-label {
     padding-left: 5px;
   }

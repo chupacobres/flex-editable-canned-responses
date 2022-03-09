@@ -19,39 +19,31 @@ class CannedResponses extends React.Component {
     }
   }
 
-  handleChange = (event) => {
+  handleChange = async (event) => {
     this.setState({ [event.target.name]: event.target.value });
+    Actions.invokeAction("SetInputText",
+      {
+        body: event.target.value,
+        channelSid: this.props.channelSid
+      });
+  }
 
-  }
-  handleOnClick = () => {
-    Actions.invokeAction('SendMessage', {
-      channelSid: this.props.channelSid,
-      body: this.state.response
-    });
-  }
-  handleChangeText = (event) => {
-    this.setState({ response: event.target.value });
-  }
 
   render() {
     return (
       <CannedResponsesStyles>
-        <div className = "frame">
-          <FormControl className="form">
-            <InputLabel className="input-label" htmlFor="response">Select a Canned Response</InputLabel>
-            <Select
-              value={this.state.response}
-              onChange={this.handleChange}
-              name="response"
-            >
-              <MenuItem value="This is my first canned response.">Canned Response 1</MenuItem>
-              <MenuItem value="This is my second canned response.">Canned Response 2</MenuItem>
-              <MenuItem value="This is my third canned response.">Canned Response 3</MenuItem>
-            </Select>
-          </FormControl>
-          <TextField id="standard-basic" multiline fullWidth placeholder='Edit response here' value={this.state.response} variant="outlined" onChange={this.handleChangeText} />
-          <Button className="bouton" variant="contained" onClick={this.handleOnClick}>submit</Button>
-        </div>
+        <FormControl className="form">
+          <InputLabel className="input-label" htmlFor="response">Select a Canned Response</InputLabel>
+          <Select
+            value={this.state.response}
+            onChange={this.handleChange}
+            name="response"
+          >
+            <MenuItem value="This is my first canned response.">Canned Response 1</MenuItem>
+            <MenuItem value="This is my second canned response.">Canned Response 2</MenuItem>
+            <MenuItem value="This is my third canned response.">Canned Response 3</MenuItem>
+          </Select>
+        </FormControl>
       </CannedResponsesStyles>
     )
   }
